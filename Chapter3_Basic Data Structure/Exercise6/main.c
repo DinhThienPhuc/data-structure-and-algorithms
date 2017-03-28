@@ -53,7 +53,7 @@ void print(Circle *head)
         Circle *i = head;
         do
         {
-            printf("%2d ", i->data);
+            printf("%d ", i->data);
             i = i->next;
         } while (i != head);
         printf("]\n");
@@ -67,10 +67,10 @@ void print(Circle *head)
 void main()
 {
     Circle *head = NULL;
-    for (int i = 0; i < 17; i++)
+    for (int i = 0; i < 11; i++)
     {
         head = insertFirst(head, rand() / 100000000);
     }
     print(head);
-    printf("Number of Node in Circle List: %d", countNodesInCircle(head));
+    printf("Number of Node in Circle List: %d\n", countNodesInCircle(head));
 }
