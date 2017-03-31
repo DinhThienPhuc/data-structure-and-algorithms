@@ -109,6 +109,32 @@ void printDetail(CLASS *mainClass)
     }
 }
 
+int NumStudents(CLASS *class)
+{
+    STUDENT *currStudent = class->students;
+    int count = 0;
+    while (currStudent != NULL)
+    {
+        count++;
+        currStudent = currStudent->next;
+    }
+    return count;
+}
+
+int NumClassStudents(CLASS *mainClass, char *className)
+{
+    CLASS *currClass = mainClass;
+    while (currClass != NULL && currClass->className != className)
+    {
+        currClass = currClass->next;
+    }
+    if (currClass == NULL)
+    {
+        return 0;
+    }
+    return NumStudents(currClass);
+}
+
 void main()
 {
     STUDENT *monitorSTARLAB = NULL;
@@ -157,4 +183,9 @@ void main()
     // printClasses(class);
 
     printDetail(class);
+
+    char *str = "STARLAB";
+    printf("Member of Class '%s': %d\n", str, NumStudents(class));
+    int num = NumClassStudents(class, str);
+    printf("Member of Class '%s': %d\n", str, num);
 }
