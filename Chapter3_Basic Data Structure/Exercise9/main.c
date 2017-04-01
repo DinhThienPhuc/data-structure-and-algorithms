@@ -101,7 +101,7 @@ void main()
     head = insertFirst(head, 6);
     printf("Originaritie ");
     print(head);
-    head = removeDefinedNode(head, 1);
+    head = removeDefinedNode(head, 6);
     printf("After remove ");
     print(head);
 }
