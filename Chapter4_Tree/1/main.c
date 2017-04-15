@@ -96,9 +96,17 @@ void printInorder(TreeNode *tree)
 {
     if (tree != NULL)
     {
-        printInorder(tree->left);
-        printf("%s ", tree->word);
-        printInorder(tree->right);
+        if (tree->left != NULL)
+        {
+            printInorder(tree->left);
+            printf("%s ", tree->word);
+            printInorder(tree->right);
+        }
+        else
+        {
+            printInorder(tree->right);
+            printf("%s ", tree->word);
+        }
     }
 }
 
