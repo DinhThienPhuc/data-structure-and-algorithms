@@ -92,23 +92,19 @@ LIST *shuffle(LIST *head)
         return oddHead;
     }
     prevEven->next = oddHead;
-    printf("even head: %d & odd head: %d\n", evenHead->data, oddHead->data);
-    printf("prev even: %d & prev odd: %d\n", prevEven->data, prevOdd->data);
-    printf("prev even next: %d\n", evenHead->next->data);
+    prevOdd->next = NULL;
 
     return evenHead;
-    // return NULL;
 }
 
 void main()
 {
     LIST *head = NULL;
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < 7; i++)
     {
         head = insertFirst(head, rand() / 100000000);
     }
     print(head);
     head = shuffle(head);
     print(head);
-    // shuffle(head);
 }
