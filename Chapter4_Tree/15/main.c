@@ -109,20 +109,27 @@ bool isSame(TreeNode *node1, TreeNode *node2)
 {
     if (isLeaf(node1) && isLeaf(node2))
         return true;
-    if (!isLeaf(node1) && !isLeaf(node2))
+    //Have right child but left child
+    if (node1->left == NULL && node1->right != NULL && node2->left == NULL && node2->right != NULL)
+        return true;
+    //Have left child but right child
+    if (node1->left != NULL && node1->right == NULL && node2->left != NULL && node2->right == NULL)
+        return true;
+    //Have both left and right child
+    if (node1->left != NULL && node1->right != NULL && node2->left != NULL && node2->right != NULL)
         return true;
     return false;
 }
 
 bool isomorphous(TreeNode *tree1, TreeNode *tree2, bool f)
 {
-    bool flag = f;
+    bool flag = f; // Initial flag = true by pass f = true
     if (tree1 != NULL && tree2 != NULL)
     {
         if (!isSame(tree1, tree2))
             flag = false;
-        isomorphous(tree1->left, tree2->left, flag);
-        isomorphous(tree1->right, tree2->right, flag);
+        flag = isomorphous(tree1->left, tree2->left, flag);
+        flag = isomorphous(tree1->right, tree2->right, flag);
     }
     return flag;
 }
@@ -212,6 +219,8 @@ int main()
 
     bool isomorph = true;
     isomorph = isomorphous(tree1, tree2, isomorph);
-    if(isomorph) printf("They are isomorphous!!!");
-    else printf("They are NOT isomorphous :(((");
+    if (isomorph)
+        printf("They are isomorphous!!!");
+    else
+        printf("They are NOT isomorphous :(((");
 }
